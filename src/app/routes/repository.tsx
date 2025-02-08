@@ -1,7 +1,8 @@
-import { paths } from '@shared/model/const/paths';
 import { lazy } from 'react';
 
-const ReposPage = lazy(() => import('@pages/repository'));
+import { paths } from '@shared/model/const/paths';
+
+const ReposPage = lazy(() => import('@pages/repository/ui'));
 
 
 export const repositoryRoutes = {

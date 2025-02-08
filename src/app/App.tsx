@@ -1,20 +1,21 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import { basePath } from '@shared/model/const/paths'
-import { useState } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+
 import { appRouteTree } from './routes/router-tree'
-
-
+import { ApolloProvider } from '@apollo/client'
+import { client } from '@shared/api/client'
 
 const createAppRouter = () =>
     createBrowserRouter(appRouteTree, { basename: basePath })
 
 
-function App() {
-    const [count, setCount] = useState(0)
+export function App() {
+    const router = createAppRouter()
 
     return (
-        <div></div>
+		<ApolloProvider client={client}> 
+			<RouterProvider router={router} />
+		</ApolloProvider>
     )
 }
-
-export default App

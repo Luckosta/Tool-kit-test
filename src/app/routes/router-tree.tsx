@@ -1,6 +1,8 @@
 import { Navigate } from 'react-router-dom';
+
+import { Layout } from '@shared/components/Layout';
+
 import { routes } from '.';
-import Layout from '@shared/components/layout';
 
 export const getRedirect = (path: string, route: string) => {
     const element = <Navigate to={route} replace />;

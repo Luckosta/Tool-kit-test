@@ -1,7 +1,8 @@
-import { paths } from '@shared/model/const/paths';
 import { lazy } from 'react';
 
-const HomePage = lazy(() => import('@pages/home'));
+import { paths } from '@shared/model/const/paths';
+
+const HomePage = lazy(() => import('@pages/home/ui'));
 
 
 export const homeRoutes = {
