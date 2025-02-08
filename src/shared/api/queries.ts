@@ -22,3 +22,30 @@ export const GET_REPOSITORIES = gql`
         }
     }
 `
+
+export const GET_REPOSITORY_DETAILS = gql`
+    query GetRepositoryDetails($id: ID!) {
+        node(id: $id) {
+            ... on Repository {
+                id
+                name
+                stargazerCount
+                updatedAt
+                url
+                description
+                owner {
+                    avatarUrl
+                    login
+                    url
+                }
+                languages(first: 10) {
+                    edges {
+                        node {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
