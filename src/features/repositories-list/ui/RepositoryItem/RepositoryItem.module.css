@@ -1,6 +1,6 @@
 .item {
-	border: 1px solid var(--border-basic);
-	border-radius: 10px;
-	padding: 10px;
-	background-color: var(--card-bg);
+    border: 1px solid var(--border-basic);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--card-bg);
 }

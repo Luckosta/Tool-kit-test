@@ -1,4 +1,5 @@
 import { RepositoryItemType } from '@features/repositories-list/model/types'
+
 import styles from './RepositoryItem.module.css'
 
 export const RepositoryItem = ({
@@ -14,7 +15,7 @@ export const RepositoryItem = ({
             <p>Звёзды: {stargazerCount}</p>
             <p>Обновлено: {new Date(updatedAt).toLocaleDateString()}</p>
 
-            <a href={url} target="_blank">
+            <a className={styles.link} href={url} target="_blank" rel="noreferrer">
                 {url}
             </a>
         </div>
