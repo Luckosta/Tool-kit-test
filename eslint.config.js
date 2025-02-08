@@ -1,33 +1,32 @@
-import js from '@eslint/js'
+import pluginJs from '@eslint/js'
+import pluginReactImport from 'eslint-plugin-import'
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import importPlugin from 'eslint-plugin-import'
 import tseslint from 'typescript-eslint'
 
-export default tseslint.config(
-    { ignores: ['dist'] },
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+    { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
+    { languageOptions: { globals: globals.browser } },
+    pluginJs.configs.recommended,
+    ...tseslint.configs.recommended,
+    pluginReact.configs.flat.recommended,
     {
-        extends: [js.configs.recommended, ...tseslint.configs.recommended],
-        files: ['**/*.{ts,tsx}'],
+        plugins: {
+            'react-hooks': pluginReactHooks,
+            import: pluginReactImport,
+        },
+        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         languageOptions: {
             ecmaVersion: 2020,
-            globals: globals.browser,
-        },
-        plugins: {
-            'react-hooks': reactHooks,
-            'react-refresh': reactRefresh,
-            import: importPlugin,
         },
         rules: {
-            ...reactHooks.configs.recommended.rules,
-            'react-refresh/only-export-components': [
-                'warn',
-                { allowConstantExport: true },
-            ],
+            'react/react-in-jsx-scope': 'off',
+            'react-hooks/exhaustive-deps': 'warn',
             indent: ['error', 4],
             'object-curly-spacing': ['error', 'always'],
-			'no-empty-file': ['error', 'always'],
+            'no-empty': 'error',
             'import/order': [
                 'error',
                 {
@@ -83,5 +82,5 @@ export default tseslint.config(
                 },
             ],
         },
-    }
-)
+    },
+]

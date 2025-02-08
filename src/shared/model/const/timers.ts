@@ -1,1 +1,1 @@
-export const DEBOUNCE_TIMER = 5000
+export const DEBOUNCE_TIMER = 500

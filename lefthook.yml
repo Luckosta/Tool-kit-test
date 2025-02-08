@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      tags: frontend lint
+      run: npx lint-staged
