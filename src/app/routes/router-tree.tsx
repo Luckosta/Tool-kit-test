@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-import { Layout } from '@shared/components/Layout';
+import { Layout } from '@shared/model/ui/Layout';
 
 import { routes } from '.';
 

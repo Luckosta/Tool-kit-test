@@ -1,25 +1,16 @@
-import { GetRepositoriesData } from '@features/repositories-list/model/types'
 import { RepositoryItem } from '../RepositoryItem'
-
+import { useUnit } from 'effector-react'
 import styles from './RepositoryList.module.css'
+import { $repositories } from '@features/repositories-list/model/store'
 
-interface RepositoryListProps {
-    data?: GetRepositoriesData
-    loading: boolean
-    error?: Error
-}
-
-export const RepositoryList = ({
-    data,
-    loading,
-    error,
-}: RepositoryListProps) => {
-    if (loading) return <p>Загрузка...</p>
-    if (error) return <p>Ошибка: {error.message}</p>
+export const RepositoryList = () => {
+    const state = useUnit($repositories)
+    if (!state || state?.loading) return <p>Загрузка...</p>
+    if (state?.error) return <p>Ошибка: {state.error}</p>
 
     return (
         <div className={styles.list}>
-            {data?.search.edges.map(({ node }) => (
+            {state?.data?.search.edges.map(({ node }) => (
                 <RepositoryItem key={node.id} {...node} />
             ))}
         </div>

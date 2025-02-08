@@ -1,4 +1,5 @@
 import { RepositoryItemType } from '@features/repositories-list/model/types'
+import styles from './RepositoryItem.module.css'
 
 export const RepositoryItem = ({
     url,
@@ -7,7 +8,7 @@ export const RepositoryItem = ({
     updatedAt,
 }: RepositoryItemType) => {
     return (
-        <div>
+        <div className={styles.item}>
             <h2>{name}</h2>
 
             <p>Звёзды: {stargazerCount}</p>

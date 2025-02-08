@@ -27,7 +27,7 @@ export interface GetRepositoriesVars {
 
 
 export interface RepositoriesState {
-    data: GetRepositoriesData | null
-    loading: boolean
-    error: string | null
+    data?: GetRepositoriesData | null
+    loading?: boolean
+    error?: string | null
 }

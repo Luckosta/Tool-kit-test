@@ -6,9 +6,7 @@ import { ErrorBoundary } from '../ErrorBoundary'
 
 export const Layout = () => {
     const renderFallback = (
-        <h1>
-			Что-то пошло не так. Попробуйте перезагрузить страницу.
-        </h1>
+        <h1>Что-то пошло не так. Попробуйте перезагрузить страницу.</h1>
     )
 
     return (
