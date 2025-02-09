@@ -9,7 +9,8 @@ export const HomePage = () => {
         useRepositoriesListData()
 
     const renderPaginator = () => {
-        if (
+        
+		if (
             !data?.search?.repositoryCount ||
             data.search.repositoryCount === 0 ||
             totalPages === 0
