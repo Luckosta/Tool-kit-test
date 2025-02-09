@@ -7,6 +7,7 @@ import {
     GetRepositoryDetailsVars,
 } from '@features/repository/model/types'
 import { GET_REPOSITORY_DETAILS } from '@shared/api/queries'
+import { Card } from '@shared/model/ui/Card'
 
 import styles from './RepositoryPage.module.css'
 
@@ -25,12 +26,14 @@ export const RepositoryPage = () => {
     if (error) return <p>Ошибка: {error.message}</p>
     if (!id || !data?.node) return <p>Репозиторий не найден</p>
 
+    const languages = data?.node?.languages?.edges?.map(({ node }) => node.name)
+
     return (
         <div className={styles.wrapper}>
             <button onClick={() => navigate(-1)} className={styles.backButton}>
                 ← Назад
             </button>
-            <div className={styles.card}>
+            <Card>
                 <div className={styles.header}>
                     <a
                         href={data?.node?.url}
@@ -70,14 +73,11 @@ export const RepositoryPage = () => {
 
                 <div className={styles.languages}>
                     Используемые языки:{' '}
-                    {data?.node?.languages?.edges &&
-                    data.node.languages.edges.length > 0
-                        ? data?.node?.languages.edges
-                              .map(({ node }) => node.name)
-                              .join(', ')
+                    {languages && languages.length > 0
+                        ? languages.join(', ')
                         : 'не указаны'}
                 </div>
-            </div>
+            </Card>
         </div>
     )
 }

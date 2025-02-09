@@ -14,14 +14,16 @@ import { GetRepositoriesData, GetRepositoriesVars } from '../model/types'
 export const useRepositoriesListData = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [query, setQuery] = useState(searchParams.get('query') || 'react')
-    const [currentPage, setCurrentPage] = useState(
-        Number(searchParams.get('page')) || 1
-    )
+    const initialPage = Number(searchParams.get('page')) || 1
+    const [currentPage, setCurrentPage] = useState(initialPage)
+    const initialCursors = localStorage.getItem('repoPageCursors')
+        ? JSON.parse(localStorage.getItem('repoPageCursors')!)
+        : { 1: null }
     const [pageCursors, setPageCursors] = useState<{
         [page: number]: string | null
-    }>({ 1: null })
+    }>(initialCursors)
 
-    const [trigger, { loading, error, data, refetch }] = useLazyQuery<
+    const [trigger, { loading, error, data }] = useLazyQuery<
         GetRepositoriesData,
         GetRepositoriesVars
     >(GET_REPOSITORIES, { fetchPolicy: 'no-cache' })
@@ -30,25 +32,39 @@ export const useRepositoriesListData = () => {
         ? Math.ceil(data.search.repositoryCount / MAX_PAGES_TO_SHOW)
         : 0
 
-    const handlePageChange = (page: number) => {
+    const handlePageChange = async (page: number) => {
         setCurrentPage(page)
-        const after = pageCursors[page] ?? null
-        refetch({ query, first: MAX_PAGES_TO_SHOW, after })
+        const after = page === 1 ? null : pageCursors[page] || null
+        await trigger({ variables: { query, first: MAX_PAGES_TO_SHOW, after } })
+    }
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value)
+        setCurrentPage(1)
+        setPageCursors({ 1: null })
     }
 
     const debouncedQuery = useMemo(() => {
         return debounce(async (q: string) => {
-            setCurrentPage(1)
-            setPageCursors({ 1: null })
+            const after =
+                currentPage === 1 ? null : pageCursors[currentPage] || null
             await trigger({
-                variables: { query: q, first: MAX_PAGES_TO_SHOW },
+                variables: { query: q, first: MAX_PAGES_TO_SHOW, after },
             })
         }, DEBOUNCE_TIMER)
     }, [trigger])
 
     useEffect(() => {
-        setSearchParams({ query, page: currentPage.toString() })
-    }, [setSearchParams, currentPage, query])
+        localStorage.setItem('repoPageCursors', JSON.stringify(pageCursors))
+    }, [pageCursors])
+
+    useEffect(() => {
+        setSearchParams({
+            query,
+            page: currentPage.toString(),
+            cursor: pageCursors[currentPage] || '',
+        })
+    }, [setSearchParams, query, currentPage, pageCursors])
 
     useEffect(() => {
         debouncedQuery(query)
@@ -74,7 +90,7 @@ export const useRepositoriesListData = () => {
         query,
         currentPage,
         totalPages,
-        setQuery,
+        handleSearch,
         handlePageChange,
     }
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { RepositoryItemType } from '@features/repositories-list/model/types'
+import { Card } from '@shared/model/ui/Card'
 
 import styles from './RepositoryItem.module.css'
 
@@ -11,7 +12,7 @@ export const RepositoryItem = ({
     stargazerCount,
     updatedAt,
 }: RepositoryItemType) => (
-    <div className={styles.item}>
+    <Card>
         <h2>
             <Link to={`/repository/${id}`}>{name}</Link>
         </h2>
@@ -22,5 +23,5 @@ export const RepositoryItem = ({
         <a className={styles.link} href={url} target="_blank" rel="noreferrer">
             {url}
         </a>
-    </div>
+    </Card>
 )

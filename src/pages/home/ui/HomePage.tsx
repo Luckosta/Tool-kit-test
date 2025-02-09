@@ -5,7 +5,7 @@ import { Paginator } from '@shared/model/ui/Paginator'
 import styles from './HomePage.module.css'
 
 export const HomePage = () => {
-    const { data, query, currentPage, totalPages, handlePageChange, setQuery } =
+    const { data, query, currentPage, totalPages, handlePageChange, handleSearch } =
         useRepositoriesListData()
 
     const renderPaginator = () => {
@@ -33,7 +33,7 @@ export const HomePage = () => {
                 type="text"
                 placeholder="Поиск репозиториев"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleSearch}
             />
 
             <RepositoryList />

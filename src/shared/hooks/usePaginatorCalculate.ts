@@ -10,7 +10,7 @@ export const usePaginatorCalculate = (
         pages = [1, 2]
     } else {
         if (currentPage === 1) {
-            pages = [1, 2, 3]
+            pages = [1, 2]
         } else if (currentPage === totalPages) {
             pages = [totalPages - 2, totalPages - 1, totalPages]
         } else {
