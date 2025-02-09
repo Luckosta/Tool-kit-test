@@ -11,7 +11,8 @@
         "lint:es:fix": "eslint . -c .ts,.tsx --fix",
         "lint:styled": "stylelint ./src/**/*.{css} --fix",
         "test": "vitest",
-        "deploy": "npm run build && gh-pages -d dist",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist",
         "preview": "vite preview"
     },
     "dependencies": {
