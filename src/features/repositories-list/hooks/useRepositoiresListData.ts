@@ -70,7 +70,8 @@ export const useRepositoriesListData = () => {
         debouncedQuery(query)
     }, [query, debouncedQuery])
 
-    useEffect(() => {
+useEffect(() => {
+
         setRepositoriesData({
             data,
             loading,
