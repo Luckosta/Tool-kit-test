@@ -5,7 +5,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-    base: '/',
+    base: '/Tool-kit-test/',
     plugins: [react()],
     resolve: {
         alias: {
