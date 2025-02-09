@@ -71,7 +71,8 @@ export const useRepositoriesListData = () => {
     }, [query, debouncedQuery])
 
     useEffect(() => {
-        setRepositoriesData({
+        
+		setRepositoriesData({
             data,
             loading,
             error: error ? error.message : null,
