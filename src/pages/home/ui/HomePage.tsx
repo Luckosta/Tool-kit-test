@@ -5,12 +5,17 @@ import { Paginator } from '@shared/model/ui/Paginator'
 import styles from './HomePage.module.css'
 
 export const HomePage = () => {
-    const { data, query, currentPage, totalPages, handlePageChange, handleSearch } =
-        useRepositoriesListData()
+    const {
+        data,
+        query,
+        currentPage,
+        totalPages,
+        handlePageChange,
+        handleSearch,
+    } = useRepositoriesListData()
 
     const renderPaginator = () => {
-        
-		if (
+        if (
             !data?.search?.repositoryCount ||
             data.search.repositoryCount === 0 ||
             totalPages === 0
