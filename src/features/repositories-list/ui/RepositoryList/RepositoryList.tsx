@@ -14,7 +14,7 @@ export const RepositoryList = () => {
     if (state?.error) return <p>Ошибка: {state.error}</p>
 
     return (
-        <div className={styles.list}>
+        <div data-testid="repository-list" className={styles.list}>
             {state?.data?.search.edges.map(({ node }) => (
                 <RepositoryItem key={node.id} {...node} />
             ))}

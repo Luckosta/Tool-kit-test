@@ -16,10 +16,11 @@ export const Paginator = ({
     const { pages } = usePaginatorCalculate(totalPages, currentPage)
 
     return (
-        <div className={styles.paginator}>
+        <div data-testid="paginator-btns" className={styles.paginator}>
             {pages.map((page) => (
                 <button
                     key={page}
+                    data-testid="paginator-btn"
                     className={`${styles.pageButton} ${page === currentPage ? styles.active : ''}`}
                     onClick={() => onPageChange(page)}
                 >

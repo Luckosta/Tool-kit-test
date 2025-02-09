@@ -1,12 +1,12 @@
 .paginator {
     display: flex;
-    gap: var(--paginator-gap);
+    gap: 8px;
     justify-content: center;
-    margin-top: var(--paginator-margin-top);
+    margin-top: 16px;
 }
 
 .pageButton {
-    padding: var(--page-button-padding);
+    padding: 8px 12px;
     border: 1px solid var(--page-button-border-color);
     background-color: var(--page-button-bg);
     cursor: pointer;

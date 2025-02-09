@@ -5,6 +5,8 @@
             "files": ["**/*.css"],
             "rules": {
                 "no-descending-specificity": null,
+				"selector-class-pattern": null,
+				"declaration-property-value-keyword-no-deprecated": null,
                 "media-feature-range-notation": "prefix",
                 "declaration-block-no-redundant-longhand-properties": null
             }

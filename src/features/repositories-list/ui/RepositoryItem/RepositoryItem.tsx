@@ -12,9 +12,11 @@ export const RepositoryItem = ({
     stargazerCount,
     updatedAt,
 }: RepositoryItemType) => (
-    <Card>
+    <Card data-testid="repository-item">
         <h2>
-            <Link to={`/repository/${id}`}>{name}</Link>
+            <Link data-testid="repository-link" to={`/repository/${id}`}>
+                {name}
+            </Link>
         </h2>
 
         <p>Звёзды: {stargazerCount} ⭐</p>
