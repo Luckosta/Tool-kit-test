@@ -1,21 +1,20 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'
 
-import { Layout } from '@shared/model/ui/Layout';
+import { Layout } from '@shared/model/ui/Layout'
 
-import { routes } from '.';
+import { routes } from '.'
 
 export const getRedirect = (path: string, route: string) => {
-    const element = <Navigate to={route} replace />;
-
+    const element = <Navigate to={route} replace />
     return {
         path,
         element,
-    };
-};
+    }
+}
 
 export const appRouteTree = [
     {
         element: <Layout />,
         children: [routes.homeRoutes, routes.repositoryRoutes],
     },
-];
+]
