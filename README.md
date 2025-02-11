@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Тестовое задание frontend developer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ТЗ
+Необходимо используя Github GraphQL API (https://docs.github.com/ru/graphql) создать
+frontend приложение, которое состоит из двух страниц:
+1.  Главная страница – список репозиториев с возможностью поиска и страницами
+2.  Карточка репозитория – страница с детальной информацией по репозиторию
+Главная страница
+Ключевые элементы страницы:
+• Поле для поиска репозиториев
+• Список репозиториев
+• Paginator – список страниц
+При введении текста в Поле для поиска, должен происходить поиск по названию среди
+всех репозиториев Github и выводиться его результат в Список репозиториев ниже.
+Если в поле ничего не введено, то показывается список репозиториев текущего
+пользователя.
+Примерная структура элементов списка:
+[Название репозитория] - [кол-во звёзд на github] - [дата последнего коммита] - [ссылка на
+Github]
+Внизу страницы есть Paginator вида [1, 2, 3, 4, 5]. Не показывать больше 10 страниц.
+При клике на вторую страницу показываются репозитории с 11 по 20. При клике на третью
+страницу показываются репозитории с 21 по 30 … и т.д.
+Выбранная страница в Paginator должна отличаться по стилю от всех остальных.
+При перезагрузке страницы состояние выбранных фильтров (поиска и страницы) должно
+сохраняться и использоваться для первоначального запроса.
+Поиск должен происходить на стороне API.
+При клике на название репозитория происходит переход на Карточку репозитория.
+Карточка репозитория
+Карточка должна иметь следующую структуру:
+• [Название репозитория] - [кол-во звёзд на github] • [Фото владельца репозитория, если есть] - [Nickname владельца репозитория с
+ссылкой на него]
+- [дата последнего коммита]
+• [Список используемых языков в репозитории]
+• [Краткое описание репозитория]
 
-Currently, two official plugins are available:
+## Дополнительно
+Плюсом будет, если вы покроете end-to-end и или unit / интеграционными тестами
+функционал приложения можно использовать Playwright или Cypress для e2e и vitest +
+react-testing-library для unit/integration.
+## Требования
+• Основные технологии - Vite, Typescript, React, GraphQL
+• Архитектура приложения должна соответствовать FSD
+• Использовать стейт-менеджер на выбор: zustand / effector (желательно). Данные
+должны храниться в стейт-менеджере.
+• Готовые UI библиотеки использовать нельзя, все нужно сверстать самостоятельно
+• Структура приложения должна быть с расчетом на будущий рост
+В остальном выбирайте любые инструменты для выполнения задания. Главное, чтобы
+вашим приложением можно было пользоваться в рамках описанных сценариев. Насчёт
+дизайна можете много не думать – ссылок, кнопок и заголовков будет достаточно. Тем не
+менее сделайте это так, чтобы этим можно было пользоваться.
+Результатом работы должна быть ссылка на ваш личный репозиторий. Идеальным
+вариантом станет еще ссылка на работающее приложение.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Инструкция
+1. Клонировать репозиторий: git clone https://github.com/Luckosta/tool-kit-test.git
+2. Установить зависимости: npm install
+3. Запустить приложение: npm run start
+4. Для авторизации используйте github token (добавьте его как переменную VITE_GITHUB_TOKEN в .env)
